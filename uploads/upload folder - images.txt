@@ -1,0 +1,3 @@
+This folder is used by the app to save the uploaded images / screenshots.
+
+The images in this folder get used by Incidents.py to add these to the .xlsx
