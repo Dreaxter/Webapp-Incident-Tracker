@@ -333,6 +333,7 @@ body { background-color: #b6e3ff; }
 </div>
 {% endif %}
 </div>
+
 <div style="
     position: fixed;
     bottom: 10px;
@@ -342,14 +343,57 @@ body { background-color: #b6e3ff; }
     opacity: 0.8;
     z-index: 9999;
 ">
-    © 2026 Gerben Rohof & (company name) — All rights reserved
+    © 2026 Gerben Rohof — All rights reserved
 </div>
+
 <button class="easter-egg-button" onclick="showEasterEgg()">
-    Press me
+    Click here!
 </button>
+
+<div id="easterEggModal" style="
+    display:none;
+    position:fixed;
+    top:0;
+    left:0;
+    width:100%;
+    height:100%;
+    background:rgba(0,0,0,0.7);
+    justify-content:center;
+    align-items:center;
+    z-index:10000;
+">
+    <div style="
+        background:white;
+        padding:20px;
+        border-radius:15px;
+        text-align:center;
+        max-width:500px;
+        box-shadow:0 0 20px rgba(0,0,0,0.3);
+    ">
+        <h3>Geppie was here 😎</h3>
+
+        <img src="/static/geppie.gif"
+             style="
+                max-width:100%;
+                border-radius:10px;
+                margin-top:10px;
+             ">
+
+        <br><br>
+
+        <button onclick="closeEasterEgg()" class="btn btn-primary">
+            Close
+        </button>
+    </div>
+</div>
+
 <script>
 function showEasterEgg() {
-    alert("Geppie was here");
+    document.getElementById("easterEggModal").style.display = "flex";
+}
+
+function closeEasterEgg() {
+    document.getElementById("easterEggModal").style.display = "none";
 }
 </script>
 </body>
