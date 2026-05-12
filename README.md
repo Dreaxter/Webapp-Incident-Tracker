@@ -342,8 +342,6 @@ to another port.
 
 # License
 
-Internal company use only.
+MIT License
 
-All rights reserved.
-
-© 2026 Gerben Rohof
+Copyright (c) 2026 Gerben Rohof
