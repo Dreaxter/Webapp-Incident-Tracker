@@ -1,4 +1,4 @@
-from flask import Flask, render_template_string, request, redirect, session, send_file
+from flask import Flask, render_template_string, request, redirect, session, send_file, abort
 import csv
 from datetime import date, datetime
 import os
@@ -170,9 +170,23 @@ def download_excel():
         mimetype="application/vnd.openxmlformats-officedocument.spreadsheetml.sheet"
     )
 
-@app.route("/uploads/<filename>")
+@app.route("/uploads/<path:filename>")
 def uploaded_file(filename):
-    return send_file(os.path.join(app.config["UPLOAD_FOLDER"], filename))
+    safe_filename = secure_filename(os.path.basename(filename))
+
+    file_path = os.path.realpath(
+        os.path.join(app.config["UPLOAD_FOLDER"], safe_filename)
+    )
+
+    upload_folder = os.path.realpath(app.config["UPLOAD_FOLDER"])
+
+    if os.path.commonpath([upload_folder, file_path]) != upload_folder:
+        abort(403)
+
+    if not os.path.isfile(file_path):
+        abort(404)
+
+    return send_file(file_path)
 
 @app.route("/", methods=["GET", "POST"])
 def index():
