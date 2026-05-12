@@ -154,6 +154,7 @@ These sheets contain:
 
 ```text
 Incident Tracker/
+├── static/
 ├── uploads/
 ├── incident.py
 ├── incidents.csv
